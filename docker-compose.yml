@@ -1,0 +1,40 @@
+# Depends_on Control Services Startup Order
+# Don't Forget Set Environment Variables Before Run This yml file
+# APP_ENV=development || production
+# windows >> set APP_ENV=development
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx.${APP_ENV}.dockerfile
+    depends_on:
+      - streams
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - node-boilerplate-network
+
+  streams:
+    container_name: Streams-Service
+    build:
+      context: .
+      dockerfile: ./docker/streams.node.${APP_ENV}.dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/streams
+    env_file:
+      - ./docker/env/app.${APP_ENV}.env
+    networks:
+      - node-boilerplate-network
+
+volumes:
+  pgdata:
+
+networks:
+  node-boilerplate-network:
+    driver: bridge
