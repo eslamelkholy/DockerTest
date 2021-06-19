@@ -1,10 +1,10 @@
 # Streams Lib
 
 ### Features
-
-- Readable Stream
-- Writable Stream
-- Transform Stream
+- Working With Streams
+- Implement Fully Communication Between Client/Server and Sending Encrypted Files Between them
+- Added Custom Readable Stream With Example on How to Write to Multiple Files
+- Using Transform Stream to Read Data from CSV And Change whole File Content
 
 ### Quick Start
 
