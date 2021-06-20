@@ -5,7 +5,7 @@ import mkdirp from 'mkdirp-promise';
 import { Chunk } from '../../types/Streams/chunk';
 
 export default class ToFileStream extends Writable {
-  constructor(options: WritableOptions) {
+  constructor(options?: WritableOptions) {
     super({ ...options, objectMode: true });
   }
 
@@ -13,7 +13,7 @@ export default class ToFileStream extends Writable {
     mkdirp(dirname(chunk.path))
       .then(() => fs.writeFile(chunk.path, chunk.content))
       .then(() => cb())
-      .catch(cb);
+      .catch((err) => cb(err));
   }
 }
 
