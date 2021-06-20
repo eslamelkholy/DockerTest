@@ -2,7 +2,7 @@ import { Writable, WritableOptions } from 'stream';
 import { promises as fs } from 'fs';
 import { dirname } from 'path';
 import mkdirp from 'mkdirp-promise';
-import { Chunk } from '../types/Streams/chunk';
+import { Chunk } from '../../types/Streams/chunk';
 
 export default class ToFileStream extends Writable {
   constructor(options: WritableOptions) {
